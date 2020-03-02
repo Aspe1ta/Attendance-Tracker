@@ -2,16 +2,6 @@ body{
   font-family: 'Lato';
 }
 
-.home{
-  margin-top:150px;
-
-}
-
-.title{
-  font-size: 60px;
-  font-weight:700;
-  text-align: center;
-}
 
 .subTitle{
   font-size:25px;
@@ -19,49 +9,56 @@ body{
   text-align:center;
 }
 
-.attendanceImage {
-  margin-top:40px;
-  width:90%;
-  height:auto;
+.card {
+  padding-left:auto;
+  padding-right:auto;
+  min-height:300px;
+  margin-top:15px;
+    border-radius:40px;
+ box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+ -webkit-transition: .25s box-shadow;
+ transition: .25s box-shadow;
+}
+.card:focus, .card:hover {
+ box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
 }
 
-/* .button1{
-  width: 248px;
-  height: 62px;
-  border: 2px solid #000000;
-  box-sizing: border-box;
-  border-radius: 74px;
-  text-align: center;
-  font-size:20px;
-  font-weight: normal;
-  line-height:60px;
-  margin-bottom:20px;
-  margin-right:10px;
-} */
-
-.button1{
-  
-  border: 2px solid #000000;
-
+.col-xs-12{
+  text-align:center;
+  margin-left:auto;
+  margin-right:auto;
+}
+.row{
+  margin-left:auto;
+  margin-right:auto;
 }
 
-.button2{
-width: 248px;
-height: 62px;
-background: #FEBC15;
-border-radius: 74px;
-text-align: center;
-font-size:20px;
-font-weight: normal;
-line-height:60px;
+.card-title{
+  margin-top:15px;
 }
 
-.button1 , .button2 {
-display:inline-block;
+.card01{
+   background:#FAF4A6;
 }
 
+.card02{
+  background: #FBD756;
+}
 
+.card01:hover{
+  background: rgba(250, 244, 166, 0.63);
+}
 
-/* .container , .button{
-  text-align: center;
-} */
+.card02:hover{
+  background: rgba(251, 215, 86, 0.8);
+}
+
+.fakePic{
+  height:100px;
+  width:100px;
+  background-color:white;
+  border-radius:50%;
+  margin:auto;
+  margin-top: 20px;
+}
+
