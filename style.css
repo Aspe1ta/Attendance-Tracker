@@ -2,6 +2,13 @@ body{
   font-family: 'Lato';
 }
 
+
+.subTitle{
+  font-size:25px;
+  font-weight:300;
+  text-align:center;
+}
+/*
 .home{
   margin-top:150px;
 
@@ -13,19 +20,13 @@ body{
   text-align: center;
 }
 
-.subTitle{
-  font-size:25px;
-  font-weight:300;
-  text-align:center;
-}
-
 .attendanceImage {
   margin-top:40px;
   width:90%;
   height:auto;
 }
 
-/* .button1{
+ .button1{
   width: 248px;
   height: 62px;
   border: 2px solid #000000;
@@ -37,10 +38,6 @@ body{
   line-height:60px;
   margin-bottom:20px;
   margin-right:10px;
-} */
-
-.button1{
-  border: 2px solid #000000;
 }
 
 .button2{
