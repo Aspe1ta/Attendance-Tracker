@@ -1,0 +1,8 @@
+.rounded-xl {
+	border-radius: 5% !important;
+}
+
+.dashed-border {
+    border-width: 3px !important;
+	border-style: dashed !important;
+}
