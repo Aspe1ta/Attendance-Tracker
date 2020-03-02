@@ -1,0 +1,59 @@
+body{
+  font-family: 'Lato';
+}
+
+.home{
+  margin-top:150px;
+
+}
+
+.title{
+  font-size: 60px;
+  font-weight:700;
+  text-align: center;
+}
+
+.subTitle{
+  font-size:25px;
+  font-weight:300;
+  text-align:center;
+}
+
+.attendanceImage {
+  margin-top:40px;
+  width:90%;
+  height:auto;
+}
+
+.button1{
+  width: 248px;
+  height: 62px;
+  border: 2px solid #000000;
+  box-sizing: border-box;
+  border-radius: 74px;
+  text-align: center;
+  font-size:20px;
+  font-weight: normal;
+  line-height:60px;
+  margin-bottom:20px;
+  margin-right:10px;
+}
+
+.button2{
+width: 248px;
+height: 62px;
+background: #FEBC15;
+border-radius: 74px;
+text-align: center;
+font-size:20px;
+font-weight: normal;
+line-height:60px;
+}
+
+.button1 , .button2 {
+display:inline-block;
+}
+
+.container , .button{
+  text-align: center;
+}
