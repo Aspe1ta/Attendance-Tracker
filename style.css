@@ -25,7 +25,7 @@ body{
   height:auto;
 }
 
-.button1{
+/* .button1{
   width: 248px;
   height: 62px;
   border: 2px solid #000000;
@@ -37,6 +37,12 @@ body{
   line-height:60px;
   margin-bottom:20px;
   margin-right:10px;
+} */
+
+.button1{
+  
+  border: 2px solid #000000;
+
 }
 
 .button2{
@@ -54,6 +60,6 @@ line-height:60px;
 display:inline-block;
 }
 
-.container , .button{
+/* .container , .button{
   text-align: center;
-}
+} */
