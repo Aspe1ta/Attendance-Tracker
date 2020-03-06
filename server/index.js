@@ -66,6 +66,7 @@ app.get("/takeattendance.html", (req, res) => {
 
 app.post('/recordAttendance', urlencodedParser, function (req, res) {
   console.log(Object.values(req.body));
+  console.log("pls work");
 })
 
 app.get("/add-edit.html", (req, res) => {
