@@ -26,6 +26,21 @@ app.engine(
   })
 );
 app.use(express.static("public"));
+
+
+let Class = db.collection("GBDA_404");
+
+// Button Submission
+
+var attendanceSubmit = function() {
+  
+  let cityRef = db.collection('cities').doc('BJ');
+
+};
+
+
+
+
 app.get("/", (req, res) => {
   //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
   res.render("main", { layout: "index" });
@@ -37,9 +52,11 @@ app.get("/scottclasses.html", (req, res) => {
 });
 
 app.get("/takeattendance.html", (req, res) => {
-  let gbdaClass = db.collection("GBDA_404");
+  
 
-  let allStudents = gbdaClass
+  
+
+  let allStudents = Class
     .get()
     .then(snapshot => {
       let studentsData = [];
@@ -47,6 +64,7 @@ app.get("/takeattendance.html", (req, res) => {
       snapshot.forEach(student => {
         //creates a array of objects containing all students data
         studentsData.push(student.data());
+        
         // gbdaClass.doc(student.id).update({ attendanceRecord: [true, false] });
       });
 
@@ -54,8 +72,8 @@ app.get("/takeattendance.html", (req, res) => {
         //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
       res.render("attendance", { layout: "attendanceBody", gbda404Data: studentsData });
 
-    })
-    .catch(err => {
+      })
+      .catch(err => {
       console.log("Error getting documents", err);
     });
 
