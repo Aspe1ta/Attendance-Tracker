@@ -1,4 +1,9 @@
- function markPresent(){
-     const studentCard = document.getElementsByClassName("card-body");
-    studentCard[0].classList.toggle("present");
- }
+     const studentCards = document.getElementsByClassName("student-card");
+
+     for(student of studentCards){
+        student.addEventListener("click",function(e){
+            console.log(e.target);
+        });
+     }
+
+   

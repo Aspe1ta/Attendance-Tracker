@@ -11,14 +11,18 @@
 
 		<!--Templated Student Card-->
 		{{#each gbda404Data}}
-		<div class="col-lg-4 col-md-6 col-sm-8 py-3 student-card" id="{{this.name}}">
-			<div class="card card-bg text-center rounded-xl py-1">
+		<div class="col-lg-4 col-md-6 col-sm-8 py-3 " >
+			<div id="{{this.name}}" class="student-card">
+
+			<div class="card card-bg text-center rounded-xl py-1" >
 				<img src="images/peopleimg.svg" class="card-img-top img-fluid w-50 p-2 mx-auto" alt="..." />
 				<div class="card-body">
 					<h5 class="card-title">{{this.name}}</h5>
 					<p class="card-text">Description</p>
 				</div>
 			</div>
+						</div>
+
 		</div>
 		{{/each}}
 
