@@ -1,4 +1,4 @@
-function markPresent(clicked_id){
-    document.getElementById(clicked_id).classList.toggle("present");
+const studentsPhotos = document.getElementsByClassName("student-photo");
+for(student of studentsPhotos){
+    console.log(student);
 }
-   
