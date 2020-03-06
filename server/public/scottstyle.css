@@ -79,3 +79,7 @@ a, a:hover, a:focus {
     }
 
 }
+
+.present{
+    background: rgba(47, 255, 47, 0.63);
+  }
