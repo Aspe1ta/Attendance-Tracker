@@ -81,5 +81,9 @@ a, a:hover, a:focus {
 }
 
 .present{
-    background: rgba(47, 255, 47, 0.63);
+    background-color: #FEBC15;
   }
+
+input{
+    display: none;
+}

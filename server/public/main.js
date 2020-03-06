@@ -1,4 +1,4 @@
- function markPresent(){
-     const studentCard = document.getElementsByClassName("card-body");
-    studentCard[0].classList.toggle("present");
- }
+function markPresent(clicked_id){
+    document.getElementById(clicked_id).classList.toggle("present");
+}
+   
