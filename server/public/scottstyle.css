@@ -22,7 +22,6 @@ a, a:hover, a:focus {
     transition: all 0.3s;
 }
 
-
 .wrapper {
     display: flex;
     align-items: stretch;
@@ -31,7 +30,7 @@ a, a:hover, a:focus {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-   height:900px;
+   max-height:100%;
     background:#505050;
     color: #fff;
     transition: all 0.3s;
@@ -47,7 +46,7 @@ a, a:hover, a:focus {
     display: block;
 }
 #sidebar ul li a:hover {
-    color: #7386D5;
+    color: #FEBC15;
     background: #fff;
 }
 .rounded-xl {
@@ -67,6 +66,9 @@ a, a:hover, a:focus {
   background: rgba(250, 244, 166, 0.63);
 }
 
+.table{
+	margin-top:50px;
+}
 
 @media (max-width: 768px) {
     #sidebar {
@@ -77,14 +79,3 @@ a, a:hover, a:focus {
     }
 
 }
-
-#override{
-  margin-top: 5vh;
-}
-
-  @media only screen and (min-width: 600px) {
-    #override{
-    max-width: 20%;
-    }
-  }
-  

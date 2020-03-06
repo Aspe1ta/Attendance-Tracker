@@ -41,7 +41,7 @@ app.get("/takeattendance.html", (req, res) => {
     .get()
     .then(snapshot => {
       snapshot.forEach(student => {
-        console.log(student.id,  '=>', student.data().attendanceRecord);
+        console.log(typeof(student.id),  '=>', student.data().attendanceRecord);
         // citiesRef.doc(student.id).update({ attendanceRecord: [true, false] });
       });
     })
@@ -53,6 +53,12 @@ app.get("/takeattendance.html", (req, res) => {
   res.render("attendance", { layout: "attendanceBody" });
 
   
+});
+
+
+app.get("/add-edit.html", (req, res) => {
+  //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
+  res.render("add", { layout: "add", });
 });
 
 app.listen(port, () => console.log(`App listening to port ${port}`));
