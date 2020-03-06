@@ -3,6 +3,9 @@ const admin = require("firebase-admin");
 const serviceAccount = require("./../server/ServiceAccountKey.json");
 const app = express();
 const port = 3000;
+const bodyParser = require('body-parser');
+let urlencodedParser = bodyParser.urlencoded({ extended: true })
+
 //Loads the handlebars module
 const handlebars = require("express-handlebars");
 
@@ -58,6 +61,12 @@ app.get("/takeattendance.html", (req, res) => {
 
 
 });
+
+
+
+app.post('/recordAttendance', urlencodedParser, function (req, res) {
+  console.log(Object.values(req.body));
+})
 
 app.get("/add-edit.html", (req, res) => {
   //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
