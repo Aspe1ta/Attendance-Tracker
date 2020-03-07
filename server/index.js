@@ -27,13 +27,15 @@ app.engine(
 );
 app.use(express.static("public"));
 
-let Class = db.collection("GBDA_404");
 
-// Button Submission
+let currentClass = "GBDA_404";
 
-var attendanceSubmit = function() {
-  let cityRef = db.collection("cities").doc("BJ");
-};
+let Class = db.collection(currentClass);
+
+
+
+
+
 
 app.get("/", (req, res) => {
   //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
@@ -46,7 +48,42 @@ app.get("/scottclasses.html", (req, res) => {
 });
 
 app.get("/takeattendance.html", (req, res) => {
-  let allStudents = Class.get()
+
+  currentClass = "GBDA_404";
+
+  let gbda404 = db.collection(currentClass);
+
+  let allStudents = gbda404.get()
+    .then(snapshot => {
+      let studentsData = [];
+
+      snapshot.forEach(student => {
+        //creates a array of objects containing all students data
+        studentsData.push(student.data());
+        console.log(studentsData);
+        // gbdaClass.doc(student.id).update({ attendanceRecord: [true, false] });
+      });
+
+      //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
+      res.render("attendance", {
+        layout: "attendanceBody",
+        gbda404Data: studentsData,
+        classNum: "GBDA 404"
+      });
+    })
+    .catch(err => {
+      console.log("Error getting documents", err);
+    });
+});
+
+
+app.get("/takeattendance302.html", (req, res) => {
+
+  currentClass = "GBDA_302";
+
+  let gbda302 = db.collection(currentClass);
+
+  let allStudents = gbda302.get()
     .then(snapshot => {
       let studentsData = [];
 
@@ -60,7 +97,8 @@ app.get("/takeattendance.html", (req, res) => {
       //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
       res.render("attendance", {
         layout: "attendanceBody",
-        gbda404Data: studentsData
+        gbda404Data: studentsData,
+        classNum: "GBDA 302"
       });
     })
     .catch(err => {
@@ -69,8 +107,8 @@ app.get("/takeattendance.html", (req, res) => {
 });
 
 app.post("/recordAttendance", urlencodedParser, function(req, res) {
-  ///////////////////////////////////////////////////////////////
 
+  ///////////////////////////////////////////////////////////////
 
   console.log(Object.values(req.body));
   console.log("pls work");
@@ -78,7 +116,7 @@ app.post("/recordAttendance", urlencodedParser, function(req, res) {
   for (let i = 1; i < Object.values(req.body).length; i++) {
     let currentAtt = [];
 
-    let attRef = db.collection("GBDA_404").doc(Object.values(req.body)[i]);
+    let attRef = db.collection(currentClass).doc(Object.values(req.body)[i]);
 
     let getAtt = attRef
       .get()
@@ -131,7 +169,7 @@ app.post("/addStudent", urlencodedParser, function(req, res) {
 
   console.log(data)
 
-  let setDoc = db.collection("GBDA_404").doc(data.name).set(data);
+  let setDoc = db.collection(currentClass).doc(data.name).set(data);
 });
 
 
@@ -139,4 +177,4 @@ app.listen(port, () => console.log(`App listening to port ${port}`));
 
 
 
-
+// let deleteDoc = db.collection('GBDA_404').doc('req.body.name').delete();
