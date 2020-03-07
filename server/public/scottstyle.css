@@ -91,3 +91,7 @@ input{
 #select-student{
     display: block;
 }
+
+.w-10{
+    width: 15% !important;
+}
