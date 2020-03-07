@@ -84,7 +84,6 @@
 		<table class="table table-striped ">
 			<thead>
 				<tr>
-					<th scope="col">Select Student</th>
 					<th scope="col">Name</th>
 					<th scope="col">Student #</th>
 					<th scope="col">Graduation Year</th>
@@ -97,12 +96,12 @@
 
 				<tr>
 
-					<form method="POST" action="/removeStudent/{{this.name}}">
-						<td> <input id="select-student" type="checkbox" id="{{this.name}}" name="{{this.name}}"
-								value="{{this.name}}"></td>
+					
 						<td>{{this.name}}</td>
 						<td>{{this.studentNumber}}</td>
 						<td>{{this.gradYear}}</td>
+											<form method="POST" action="/removeStudent/{{this.name}}">
+
 						<td> <button class="btn btn-danger remove-button"> Remove </button></td>
 					</form>
 
