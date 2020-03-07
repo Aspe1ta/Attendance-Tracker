@@ -62,6 +62,11 @@ app.get("/takeattendance.html", (req, res) => {
 
 });
 
+let tempArr= newAtt;
+tempArr[(parseInt(Object.values(req.body)[0]) - 1)] = true;
+
+newAtt = tempArr;
+
 
 
 app.post('/recordAttendance', urlencodedParser, function (req, res) {
@@ -75,3 +80,7 @@ app.get("/add-edit.html", (req, res) => {
 });
 
 app.listen(port, () => console.log(`App listening to port ${port}`));
+
+
+
+
