@@ -43,7 +43,7 @@ app.get("/scottclasses.html", (req, res) => {
   res.render("classes", { layout: "classesBody" });
 });
 
-app.get("/takeattendance.html", (req, res) => {
+app.get("/takeattendanceGBDA_404.html", (req, res) => {
   currentClass = "GBDA_404";
 
   let gbda404 = db.collection(currentClass);
@@ -73,7 +73,7 @@ app.get("/takeattendance.html", (req, res) => {
     });
 });
 
-app.get("/takeattendance302.html", (req, res) => {
+app.get("/takeattendanceGBDA_302.html", (req, res) => {
   currentClass = "GBDA_302";
 
   let gbda302 = db.collection(currentClass);
@@ -236,11 +236,6 @@ app.get("/viewAttendance.html", (req, res) => {
           absent.push(studentsData[i]);
         }
 
-      // if(dummydata.attendanceRecord["insertdayhewre"] == true){
-      //   present.push();
-      // } else{
-      //   students
-      // }
 
       //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
       res.render("viewAttendance", {
