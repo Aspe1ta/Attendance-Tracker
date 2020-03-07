@@ -114,7 +114,16 @@ app.post("/recordAttendance", urlencodedParser, function(req, res) {
 /////////////////////////////////////////////////////////////////
 
 app.get("/add-edit.html", (req, res) => {
-  //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
+
+  // console.log(Object.values(req.body));
+
+  // let data = {
+  //   attendanceRecord: [],
+  //   name: "string"
+  // }
+
+  // let setDoc = db.collection('cities').doc(data.name).set(data);
+
   res.render("add", { layout: "add" });
 });
 
