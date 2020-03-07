@@ -27,15 +27,11 @@ app.engine(
 );
 app.use(express.static("public"));
 
-
 let currentClass = "GBDA_404";
 
 let Class = db.collection(currentClass);
 
-
 let currentDay = 1;
-
-
 
 app.get("/", (req, res) => {
   //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
@@ -48,12 +44,12 @@ app.get("/scottclasses.html", (req, res) => {
 });
 
 app.get("/takeattendance.html", (req, res) => {
-
   currentClass = "GBDA_404";
 
   let gbda404 = db.collection(currentClass);
 
-  let allStudents = gbda404.get()
+  let allStudents = gbda404
+    .get()
     .then(snapshot => {
       let studentsData = [];
 
@@ -76,14 +72,13 @@ app.get("/takeattendance.html", (req, res) => {
     });
 });
 
-
 app.get("/takeattendance302.html", (req, res) => {
-
   currentClass = "GBDA_302";
 
   let gbda302 = db.collection(currentClass);
 
-  let allStudents = gbda302.get()
+  let allStudents = gbda302
+    .get()
     .then(snapshot => {
       let studentsData = [];
 
@@ -107,7 +102,6 @@ app.get("/takeattendance302.html", (req, res) => {
 });
 
 app.post("/recordAttendance", urlencodedParser, function(req, res) {
-
   ///////////////////////////////////////////////////////////////
 
   console.log(Object.values(req.body));
@@ -125,7 +119,6 @@ app.post("/recordAttendance", urlencodedParser, function(req, res) {
           console.log("No such document!");
         } else {
           currentAtt = doc.data().attendanceRecord;
-          
         }
 
         let newAtt = currentAtt;
@@ -140,8 +133,6 @@ app.post("/recordAttendance", urlencodedParser, function(req, res) {
 
         // newAtt[(parseInt(Object.values(req.body)[0]) - 1)] = true;
 
-        
-
         attRef.update({ attendanceRecord: tempArr });
       })
       .catch(err => {
@@ -152,11 +143,10 @@ app.post("/recordAttendance", urlencodedParser, function(req, res) {
 /////////////////////////////////////////////////////////////////
 
 app.get("/add-edit.html", (req, res) => {
-
-  
   let add = db.collection(currentClass);
 
-  let allStudents = add.get()
+  let allStudents = add
+    .get()
     .then(snapshot => {
       let studentsData = [];
 
@@ -168,53 +158,46 @@ app.get("/add-edit.html", (req, res) => {
       });
 
       //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
-      res.render("add", { layout: "add",  gbda404Data: studentsData, classname: currentClass });
-
+      res.render("add", { layout: "add", gbda404Data: studentsData, classname: currentClass });
     })
     .catch(err => {
       console.log("Error getting documents", err);
     });
-  
-
-  
-
 });
 
 app.post("/addStudent", urlencodedParser, function(req, res) {
-  // console.log(req.body);
+  console.log(req.body);
 
   let data = req.body;
-  
+
   data.attendanceRecord = [false, false, false, false, false, false, false, false, false, false];
 
   // console.log(data)
 
-  let setDoc = db.collection(currentClass).doc(data.name).set(data);
+  let setDoc = db
+    .collection(currentClass)
+    .doc(data.name)
+    .set(data);
 });
-
 
 app.post("/removeStudent/:id", urlencodedParser, function(req, res) {
   // console.log("Got it ", req.params.id);
-  
-  let deleteDoc = db.collection(currentClass).doc(req.params.id).delete();
 
+  let deleteDoc = db
+    .collection(currentClass)
+    .doc(req.params.id)
+    .delete();
 });
 
-
 app.get("/viewAttendance.html", (req, res) => {
-
   console.log(currentDay);
-
 
   let add = db.collection(currentClass);
 
-  let allStudents = add.get()
+  let allStudents = add
+    .get()
     .then(snapshot => {
       let studentsData = [];
-
-      
-
-
 
       snapshot.forEach(student => {
         //creates a array of objects containing all students data
@@ -223,20 +206,17 @@ app.get("/viewAttendance.html", (req, res) => {
         // gbdaClass.doc(student.id).update({ attendanceRecord: [true, false] });
       });
 
-      
       let present = [];
       let absent = [];
-      
-      
+
       // console.log("This is stu data: ", studentsData );
 
-      for(let i = 0; i < studentsData.length; i++)
-
-      if(studentsData[i].attendanceRecord[currentDay] == true){
-        present.push(studentsData[i]);
-      } else {
-        absent.push(studentsData[i]);
-      }
+      for (let i = 0; i < studentsData.length; i++)
+        if (studentsData[i].attendanceRecord[currentDay] == true) {
+          present.push(studentsData[i]);
+        } else {
+          absent.push(studentsData[i]);
+        }
 
       // if(dummydata.attendanceRecord["insertdayhewre"] == true){
       //   present.push();
@@ -245,25 +225,22 @@ app.get("/viewAttendance.html", (req, res) => {
       // }
 
       //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
-      res.render("viewAttendance", { layout: "viewAttendanceBody",  gbda404Data: studentsData, classname: currentClass, present: present, absent: absent });
-    }
-
-
-    
-    )
+      res.render("viewAttendance", {
+        layout: "viewAttendanceBody",
+        gbda404Data: studentsData,
+        classname: currentClass,
+        present: present,
+        absent: absent
+      });
+    })
     .catch(err => {
       console.log("Error getting documents", err);
     });
-
 });
 
-
 app.post("/selectClass", urlencodedParser, function(req, res) {
-  
   console.log(Object.values(req.body));
   currentDay = parseInt(req.body);
-
-
 });
 
 app.listen(port, () => console.log(`App listening to port ${port}`));
