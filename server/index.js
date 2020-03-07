@@ -115,21 +115,25 @@ app.post("/recordAttendance", urlencodedParser, function(req, res) {
 
 app.get("/add-edit.html", (req, res) => {
 
-  // console.log(Object.values(req.body));
+  
 
-  // let data = {
-  //   attendanceRecord: [],
-  //   name: "string"
-  // }
-
-  // let setDoc = db.collection('cities').doc(data.name).set(data);
+  
 
   res.render("add", { layout: "add" });
 });
 
 app.post("/addStudent", urlencodedParser, function(req, res) {
   console.log(req.body);
+
+  let data = req.body;
+  
+  data.attendanceRecord = [false, false];
+
+  console.log(data)
+
+  let setDoc = db.collection("GBDA_404").doc(data.name).set(data);
 });
+
 
 app.listen(port, () => console.log(`App listening to port ${port}`));
 
