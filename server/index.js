@@ -260,9 +260,9 @@ app.get("/viewAttendance.html", (req, res) => {
 
 app.post("/selectClass", urlencodedParser, function(req, res) {
   
+
   console.log(Object.values(req.body));
   currentDay = parseInt(req.body);
-
 
 });
 
