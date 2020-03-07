@@ -207,6 +207,7 @@ app.post("/removeStudent/:id", urlencodedParser, function(req, res) {
 });
 
 app.get("/viewAttendance.html", (req, res) => {
+
   console.log(currentDay);
 
   let add = db.collection(currentClass);
@@ -226,10 +227,10 @@ app.get("/viewAttendance.html", (req, res) => {
       let present = [];
       let absent = [];
 
-      // console.log("This is stu data: ", studentsData );
+      console.log("This is stu data: ", studentsData );
 
       for (let i = 0; i < studentsData.length; i++)
-        if (studentsData[i].attendanceRecord[currentDay] == true) {
+        if (studentsData[i].attendanceRecord[currentDay - 1] == true) {
           present.push(studentsData[i]);
         } else {
           absent.push(studentsData[i]);
