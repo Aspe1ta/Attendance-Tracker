@@ -1,5 +1,22 @@
 <div class="container min-vh-100">
 
+     <div class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content">
+            <div class="row justify-content-center mb-5 pb-5">
+    
+                <div class="col-6">
+                  <img  class="img-fluid " src="images/confirmed.gif" alt="" />
+                </div>
+                <div class="col-auto text-center">
+                  <h1 class="font-weight-bold">Attendance Succesfully Recorded</h1>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+
 	<div class="row">
 		<div class="col-12">
 
@@ -42,7 +59,7 @@
 
 						{{/each}}
 					</div>
-					<button type="submit" class="btn btn-primary mx-3 px-5">Submit</button>
+					<button type="submit" class="btn btn-primary mx-3 px-5" data-toggle="modal" data-target="#exampleModalCenter">Submit</button>
 
 			</form>
 
