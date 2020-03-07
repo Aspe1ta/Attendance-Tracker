@@ -1,0 +1,80 @@
+<body>
+    <div class="container-fluid min-vh-100">
+        <div class="row">
+            <div class="col-12">
+                <div class="col-lg-12 my-4 mb-5">
+                    <h1 class="font-weight-bold">Class Attendance</h1>
+                    <h5 class="text-secondary">Select a class date to view which student's were present.</h5>
+
+                    <div class="col-6 px-0">
+                        <form class="form-inline" method="POST" action="/selectClass">
+                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                <option selected value="1">Class 1 - January 6, 2019</option>
+                                <option value="2">Class 2 - March 13, 2019</option>
+                                <option value="3">Class 3 - March 20, 2019</option>
+                                <option value="4">Class 4 - March 27, 2019</option>
+                                <option value="5">Class 5 - March 3, 2019</option>
+                                <option value="6">Class 6 - March 10, 2019</option>
+                                <option value="7">Class 7 - March 17, 2019</option>
+                                <option value="8">Class 8 - March 24, 2019</option>
+                                <option value="9">Class 9 - March 2, 2019</option>
+                                <option value="10">Class 10 - March 9, 2019</option>
+                                <option value="11">Class 11 - March 16, 2019</option>
+                                <option value="12">Class 12 - March 23, 2019</option>
+
+                            </select>
+                            <button type="submit" class="btn btn-primary my-1">View Class Attendance</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="table-responsive">
+                    <table class="table table-striped  my-3">
+                        <h2 class="font-weight-bolder">Student's Present</h2>
+
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Student #</th>
+                                <th scope="col">Graduation Year</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each present}}
+                            <tr>
+                                <td>{{this.name}}</td>
+                                <td>{{this.studentNumber}}</td>
+                                <td>{{this.gradYear}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="table-responsive">
+                    <table class="table table-striped my-3">
+                        <h2 class="font-weight-bolder">Student's Absent</h2>
+
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Student #</th>
+                                <th scope="col">Graduation Year</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each absent}}
+                            <tr>
+                                <td>{{this.name}}</td>
+                                <td>{{this.studentNumber}}</td>
+                                <td>{{this.gradYear}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
