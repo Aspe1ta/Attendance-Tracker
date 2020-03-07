@@ -64,7 +64,8 @@ app.get("/takeattendance.html", (req, res) => {
       res.render("attendance", {
         layout: "attendanceBody",
         gbda404Data: studentsData,
-        classNum: "GBDA 404"
+        classNum: "GBDA 404",
+        currentClass: currentClass
       });
     })
     .catch(err => {
@@ -93,7 +94,8 @@ app.get("/takeattendance302.html", (req, res) => {
       res.render("attendance", {
         layout: "attendanceBody",
         gbda404Data: studentsData,
-        classNum: "GBDA 302"
+        classNum: "GBDA 302",
+        currentClass: currentClass
       });
     })
     .catch(err => {
