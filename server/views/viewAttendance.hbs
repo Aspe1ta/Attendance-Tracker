@@ -7,9 +7,10 @@
                     <h5 class="text-secondary">Select a class date to view which student's were present.</h5>
 
                     <div class="col-6 px-0">
-                        <form class="form-inline" method="POST" action="/selectClass">
-                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                <option selected value="1">Class 1 - January 6, 2019</option>
+                        <form id="attendance-form" method="POST" action="/recordAttendance">
+				
+					    <select class="form-control" name="exampleFormControlSelect1" id="exampleFormControlSelect1">
+                        <option selected value="1">Class 1 - January 6, 2019</option>
                                 <option value="2">Class 2 - March 13, 2019</option>
                                 <option value="3">Class 3 - March 20, 2019</option>
                                 <option value="4">Class 4 - March 27, 2019</option>
@@ -21,8 +22,8 @@
                                 <option value="10">Class 10 - March 9, 2019</option>
                                 <option value="11">Class 11 - March 16, 2019</option>
                                 <option value="12">Class 12 - March 23, 2019</option>
-
-                            </select>
+                    </select>
+				
                             <button type="submit" class="btn btn-primary my-1">View Class Attendance</button>
                         </form>
                     </div>
