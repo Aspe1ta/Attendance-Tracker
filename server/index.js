@@ -129,8 +129,10 @@ app.post("/recordAttendance", urlencodedParser, function(req, res) {
 
         tempArr[parseInt(Object.values(req.body)[0]) - 1] = true;
 
-        currentDay = parseInt(Object.values(req.body)[0]);
 
+        
+        currentDay = parseInt(Object.values(req.body)[0]);
+        console.log("test135", currentDay)
         // newAtt = tempArr;
 
         // newAtt[(parseInt(Object.values(req.body)[0]) - 1)] = true;
@@ -146,7 +148,6 @@ app.post("/recordAttendance", urlencodedParser, function(req, res) {
 
 app.get("/add-edit.html", (req, res) => {
   let add = db.collection(currentClass);
-
   let allStudents = add
     .get()
     .then(snapshot => {
