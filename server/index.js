@@ -114,13 +114,26 @@ app.post("/recordAttendance", urlencodedParser, function(req, res) {
 /////////////////////////////////////////////////////////////////
 
 app.get("/add-edit.html", (req, res) => {
-  //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
+
+  
+
+  
+
   res.render("add", { layout: "add" });
 });
 
 app.post("/addStudent", urlencodedParser, function(req, res) {
   console.log(req.body);
+
+  let data = req.body;
+  
+  data.attendanceRecord = [false, false];
+
+  console.log(data)
+
+  let setDoc = db.collection("GBDA_404").doc(data.name).set(data);
 });
+
 
 app.listen(port, () => console.log(`App listening to port ${port}`));
 
