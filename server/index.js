@@ -143,6 +143,9 @@ app.post("/recordAttendance", urlencodedParser, function(req, res) {
         console.log("Error getting document", err);
       });
   }
+  backURL=req.header('Referer') || '/';
+  // do your thang
+  res.redirect(backURL);
 });
 /////////////////////////////////////////////////////////////////
 
@@ -237,14 +240,57 @@ app.get("/viewAttendance.html", (req, res) => {
         absent: absent
       });
     })
-    .catch(err => {
-      console.log("Error getting documents", err);
-    });
 });
 
 app.post("/selectClass", urlencodedParser, function(req, res) {
   console.log(Object.values(req.body));
-  currentDay = parseInt(req.body);
+  currentDay = parseInt(Object.values(req.body));
+  console.log(currentDay);
+
+  let add = db.collection(currentClass);
+
+  let allStudents = add
+    .get()
+    .then(snapshot => {
+      let studentsData = [];
+
+      snapshot.forEach(student => {
+        //creates a array of objects containing all students data
+        studentsData.push(student.data());
+
+        // gbdaClass.doc(student.id).update({ attendanceRecord: [true, false] });
+      });
+
+      let present = [];
+      let absent = [];
+
+
+      for (let i = 0; i < studentsData.length; i++)
+        if (studentsData[i].attendanceRecord[currentDay - 1] == true) {
+          present.push(studentsData[i]);
+        } else {
+          absent.push(studentsData[i]);
+        }
+
+      // if(dummydata.attendanceRecord["insertdayhewre"] == true){
+      //   present.push();
+      // } else{
+      //   students
+      // }
+
+      //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
+      res.render("viewAttendance", {
+        layout: "viewAttendanceBody",
+        gbda404Data: studentsData,
+        classname: currentClass,
+        present: present,
+        absent: absent,
+        currentDay: currentDay
+      });
+    })
+  
+
+  
 });
 
 app.listen(port, () => console.log(`App listening to port ${port}`));
