@@ -154,7 +154,9 @@ app.post("/recordAttendance", urlencodedParser, function(req, res) {
 app.get("/add-edit.html", (req, res) => {
 
   
-  let allStudents = Class.get()
+  let add = db.collection(currentClass);
+
+  let allStudents = add.get()
     .then(snapshot => {
       let studentsData = [];
 
@@ -166,7 +168,7 @@ app.get("/add-edit.html", (req, res) => {
       });
 
       //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
-      res.render("add", { layout: "add",  gbda404Data: studentsData });
+      res.render("add", { layout: "add",  gbda404Data: studentsData, classname: currentClass });
 
     })
     .catch(err => {
@@ -183,7 +185,7 @@ app.post("/addStudent", urlencodedParser, function(req, res) {
 
   let data = req.body;
   
-  data.attendanceRecord = [false, false];
+  data.attendanceRecord = [false, false, false, false, false, false, false, false, false, false];
 
   console.log(data)
 
