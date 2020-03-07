@@ -127,6 +127,10 @@ app.get("/add-edit.html", (req, res) => {
   res.render("add", { layout: "add" });
 });
 
+app.post("/addStudent", urlencodedParser, function(req, res) {
+  console.log(req.body);
+});
+
 app.listen(port, () => console.log(`App listening to port ${port}`));
 
 
