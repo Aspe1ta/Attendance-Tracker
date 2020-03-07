@@ -80,10 +80,7 @@ app.get("/takeattendance.html", (req, res) => {
 
 });
 
-let tempArr= newAtt;
-tempArr[(parseInt(Object.values(req.body)[0]) - 1)] = true;
 
-newAtt = tempArr;
 
 
 
