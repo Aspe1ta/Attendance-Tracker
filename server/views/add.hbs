@@ -1,34 +1,62 @@
 <div class="container min-vh-100">
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add a Student to the Class</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method="POST" action="/addStudent">
-          <div class="form-group">
-            <label for="name" class="col-form-label">Student Name:</label>
-            <input type="text" class="form-control"  id="name" name="name">
-          </div>
-          <div class="form-group">
-            <label for="studentnumber" class="col-form-label">Student #:</label>
-            <input type="number" class="form-control"  id="studentnumber" name="studentnumber">
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-primary">Send message</button>
-      </div>
-	          </form>
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Add a Student to the Class</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form method="POST" action="/addStudent">
+						<div class="form-group">
+							<label for="name" class="col-form-label">Student Name:</label>
+							<input type="text" class="form-control" id="name" name="name">
+						</div>
+						<div class="form-group">
+							<label for="studentnumber" class="col-form-label">Student #:</label>
+							<input type="number" class="form-control" id="studentnumber" name="studentnumber">
+						</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Send
+						message</button>
+				</div>
+				</form>
 
-    </div>
-  </div>
-</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header text-center">
+					<h5 class="modal-title mx-auto " id="exampleModalLongTitle">Confirm Removal of:</h5>
+					<button type="button" class="close mx-1" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+
+					<h5 class="card-title" id="student-name"></h5>
+					<p class="card-text" id="student-id"></p>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
@@ -45,98 +73,54 @@
 				<a href="" class="btn btn-outline-dark rounded-pill px-4 ">Import CSV</a>
 			</div>
 			<div class="col-auto">
-				<a class="btn btn-warning rounded-pill px-4 " data-toggle="modal" data-target="#exampleModal">Add Student</a>
+				<a class="btn btn-warning rounded-pill px-4 " data-toggle="modal" data-target="#exampleModal">Add
+					Student</a>
 			</div>
 		</div>
 	</div>
 
 
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th scope="col">Select All</th>
-				<th scope="col">First</th>
-				<th scope="col">Last</th>
-				<th scope="col">Edit</th>
+	<div class="table-responsive align-content-center">
 
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<th scope="row">
-					<div class="form-check">
-						<input class="form-check-input position-static" type="checkbox" id="blankCheckbox"
-							value="option1" aria-label="...">
-					</div>
+		<table class="table table-striped ">
+			<thead>
+				<tr>
+					<th scope="col">Select Student</th>
+					<th scope="col">Name</th>
+					<th scope="col">Student #</th>
+					<th scope="col">Graduation Year</th>
+					<th scope="col">Remove</th>
 
-				</th>
-				<td>Mark</td>
-				<td>Otto</td>
-				<td>edit</td>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each gbda404Data}}
 
-			</tr>
-			<tr>
-				<th scope="row">
-					<div class="form-check">
-						<input class="form-check-input position-static" type="checkbox" id="blankCheckbox"
-							value="option1" aria-label="...">
-					</div>
-				</th>
-				<td>Jacob</td>
-				<td>Thornton</td>
-				<td>edit</td>
-			</tr>
-			<tr>
-				<th scope="row">
-					<div class="form-check">
-						<input class="form-check-input position-static" type="checkbox" id="blankCheckbox"
-							value="option1" aria-label="...">
-					</div>
-				</th>
-				<td>Larry</td>
-				<td>the Bird</td>
-				<td>edit</td>
-			</tr>
-			<tr>
-				<th scope="row">
-					<div class="form-check">
-						<input class="form-check-input position-static" type="checkbox" id="blankCheckbox"
-							value="option1" aria-label="...">
-					</div>
+				<tr>
 
-				</th>
-				<td>Mark</td>
-				<td>Otto</td>
-				<td>edit</td>
-			</tr>
-			<tr>
-				<th scope="row">
-					<div class="form-check">
-						<input class="form-check-input position-static" type="checkbox" id="blankCheckbox"
-							value="option1" aria-label="...">
-					</div>
+					<form method="POST" action="/removeStudent">
+						<td> <input id="select-student" type="checkbox" id="{{this.name}}" name="{{this.name}}"
+								value="{{this.name}}"></td>
+						<td>{{this.name}}</td>
+						<td>{{this.studentNumber}}</td>
+						<td>{{this.gradYear}}</td>
+						<td> <button class="btn btn-danger remove-button" onclick="testFunction({{this.name}})"> Remove </button></td>
+					</form>
 
-				</th>
-				<td>Mark</td>
-				<td>Otto</td>
-				<td>edit</td>
-			</tr>
-			<tr>
-				<th scope="row">
-					<div class="form-check">
-						<input class="form-check-input position-static" type="checkbox" id="blankCheckbox"
-							value="option1" aria-label="...">
-					</div>
 
-				</th>
-				<td>Mark</td>
-				<td>Otto</td>
-				<td>edit</td>
-			</tr>
-		</tbody>
-	</table>
+				</tr>
+
+
+
+
+				{{/each}}
+
+			</tbody>
+		</table>
+
+
+	</div>
 </div>
-
 
 
 

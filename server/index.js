@@ -152,12 +152,30 @@ app.post("/recordAttendance", urlencodedParser, function(req, res) {
 /////////////////////////////////////////////////////////////////
 
 app.get("/add-edit.html", (req, res) => {
+  
+  
+  let allStudents = Class.get()
+    .then(snapshot => {
+      let studentsData = [];
 
+      snapshot.forEach(student => {
+        //creates a array of objects containing all students data
+        studentsData.push(student.data());
+
+        // gbdaClass.doc(student.id).update({ attendanceRecord: [true, false] });
+      });
+
+      //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
+      res.render("add", { layout: "add",  gbda404Data: studentsData });
+
+    })
+    .catch(err => {
+      console.log("Error getting documents", err);
+    });
   
 
   
 
-  res.render("add", { layout: "add" });
 });
 
 app.post("/addStudent", urlencodedParser, function(req, res) {
@@ -173,8 +191,12 @@ app.post("/addStudent", urlencodedParser, function(req, res) {
 });
 
 
-app.listen(port, () => console.log(`App listening to port ${port}`));
+app.post("/removeStudent", urlencodedParser, function(req, res) {
+  console.log(req.body);
+});
 
+
+app.listen(port, () => console.log(`App listening to port ${port}`));
 
 
 // let deleteDoc = db.collection('GBDA_404').doc('req.body.name').delete();

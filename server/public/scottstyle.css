@@ -87,3 +87,7 @@ a, a:hover, a:focus {
 input{
     display: none;
 }
+
+#select-student{
+    display: block;
+}
