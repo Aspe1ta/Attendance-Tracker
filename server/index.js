@@ -152,7 +152,7 @@ app.post("/recordAttendance", urlencodedParser, function(req, res) {
 /////////////////////////////////////////////////////////////////
 
 app.get("/add-edit.html", (req, res) => {
-  
+
   
   let allStudents = Class.get()
     .then(snapshot => {
@@ -191,12 +191,15 @@ app.post("/addStudent", urlencodedParser, function(req, res) {
 });
 
 
-app.post("/removeStudent", urlencodedParser, function(req, res) {
-  console.log(req.body);
+app.post("/removeStudent/:id", urlencodedParser, function(req, res) {
+  console.log("Got it ", req.params.id);
+  
+  let deleteDoc = db.collection(currentClass).doc(req.params.id).delete();
+
 });
 
 
 app.listen(port, () => console.log(`App listening to port ${port}`));
 
 
-// let deleteDoc = db.collection('GBDA_404').doc('req.body.name').delete();
+

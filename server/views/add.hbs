@@ -98,13 +98,13 @@
 
 				<tr>
 
-					<form method="POST" action="/removeStudent">
+					<form method="POST" action="/removeStudent/{{this.name}}">
 						<td> <input id="select-student" type="checkbox" id="{{this.name}}" name="{{this.name}}"
 								value="{{this.name}}"></td>
 						<td>{{this.name}}</td>
 						<td>{{this.studentNumber}}</td>
 						<td>{{this.gradYear}}</td>
-						<td> <button class="btn btn-danger remove-button" onclick="testFunction({{this.name}})"> Remove </button></td>
+						<td> <button class="btn btn-danger remove-button"> Remove </button></td>
 					</form>
 
 
