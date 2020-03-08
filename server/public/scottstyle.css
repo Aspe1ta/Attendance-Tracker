@@ -28,10 +28,9 @@ a, a:hover, a:focus {
 }
 
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 300px;
+    max-width: 300px;
    max-height:100%;
-    background:#505050;
     color: #fff;
     transition: all 0.3s;
 }
@@ -46,7 +45,7 @@ a, a:hover, a:focus {
     display: block;
 }
 #sidebar ul li a:hover {
-    color: #FEBC15;
+    color: #ffc107;
     background: #fff;
 }
 .rounded-xl {
@@ -94,4 +93,17 @@ input{
 
 .w-10{
     width: 15% !important;
+}
+
+.card:hover {
+    transform: translate(0, -5px);
+  }
+
+.card{
+    transition: transform .3s ease-out;
+
+}
+
+.bg-dark{
+    background-color: rgb(19, 20, 22) !important;
 }
