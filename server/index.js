@@ -200,7 +200,10 @@ app.post("/addStudent", urlencodedParser, function(req, res) {
   let setDoc = db
     .collection(currentClass)
     .doc(data.name)
-    .set(data);
+    .set(data)
+    .then(test =>{
+      res.redirect('/add-edit.html');
+    });
 });
 
 app.post("/removeStudent/:id", urlencodedParser, function(req, res) {
@@ -209,7 +212,10 @@ app.post("/removeStudent/:id", urlencodedParser, function(req, res) {
   let deleteDoc = db
     .collection(currentClass)
     .doc(req.params.id)
-    .delete();
+    .delete()
+    .then(test =>{
+      res.redirect('/add-edit.html');
+    });
 });
 
 app.get("/viewAttendance.html", (req, res) => {
