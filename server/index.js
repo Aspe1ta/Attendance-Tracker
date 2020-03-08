@@ -67,7 +67,6 @@ app.get("/takeattendanceGBDA_404.html", (req, res) => {
         classNum: "GBDA 404",
         currentClass: currentClass,
         currentDay: currentDay
-
       });
     })
     .catch(err => {
@@ -132,10 +131,8 @@ app.post("/recordAttendance", urlencodedParser, function(req, res) {
 
         tempArr[parseInt(Object.values(req.body)[0]) - 1] = true;
 
-
-        
         currentDay = parseInt(Object.values(req.body)[0]);
-        console.log("test135", currentDay)
+        console.log("test135", currentDay);
         // newAtt = tempArr;
 
         // newAtt[(parseInt(Object.values(req.body)[0]) - 1)] = true;
@@ -146,7 +143,7 @@ app.post("/recordAttendance", urlencodedParser, function(req, res) {
         console.log("Error getting document", err);
       });
   }
-  backURL=req.header('Referer') || '/';
+  backURL = req.header("Referer") || "/";
   // do your thang
   res.redirect(backURL);
 });
@@ -167,7 +164,11 @@ app.get("/add-edit.html", (req, res) => {
       });
 
       //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
-      res.render("add", { layout: "add", gbda404Data: studentsData, classname: currentClass });
+      res.render("add", {
+        layout: "add",
+        gbda404Data: studentsData,
+        classname: currentClass
+      });
     })
     .catch(err => {
       console.log("Error getting documents", err);
@@ -179,7 +180,20 @@ app.post("/addStudent", urlencodedParser, function(req, res) {
 
   let data = req.body;
 
-  data.attendanceRecord = [false, false, false, false, false, false, false, false, false, false, false, false];
+  data.attendanceRecord = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ];
 
   // console.log(data)
 
@@ -199,47 +213,58 @@ app.post("/removeStudent/:id", urlencodedParser, function(req, res) {
 });
 
 app.get("/viewAttendance.html", (req, res) => {
-
   console.log(currentDay);
 
   let add = db.collection(currentClass);
 
-  let allStudents = add
-    .get()
-    .then(snapshot => {
-      let studentsData = [];
+  let allStudents = add.get().then(snapshot => {
+    let studentsData = [];
 
-      snapshot.forEach(student => {
-        //creates a array of objects containing all students data
-        studentsData.push(student.data());
+    snapshot.forEach(student => {
+      //creates a array of objects containing all students data
+      studentsData.push(student.data());
 
-        // gbdaClass.doc(student.id).update({ attendanceRecord: [true, false] });
-      });
+      // gbdaClass.doc(student.id).update({ attendanceRecord: [true, false] });
+    });
 
-      let present = [];
-      let absent = [];
+    let present = [];
+    let absent = [];
 
-      console.log("This is stu data: ", studentsData );
+    console.log([true, false, true, false, true].filter(v => v).length);
 
-      for (let i = 0; i < studentsData.length; i++)
-        if (studentsData[i].attendanceRecord[currentDay - 1] == true) {
-          present.push(studentsData[i]);
-        } else {
-          absent.push(studentsData[i]);
-        }
+    for (let i = 0; i < studentsData.length; i++) {
 
+      let storedArr = [];
+      console.log('this is the length', studentsData.length);
 
-      //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
-      res.render("viewAttendance", {
-        layout: "viewAttendanceBody",
-        gbda404Data: studentsData,
-        classname: currentClass,
-        present: present,
-        absent: absent,
-        currentDay: currentDay
+      for (let j = 0; j < currentDay; j++) {
 
-      });
-    })
+        storedArr.push(studentsData[i].attendanceRecord[j]);
+        console.log(storedArr);
+
+      }
+
+    }
+
+    console.log("This is stu data: ", studentsData);
+
+    for (let i = 0; i < studentsData.length; i++)
+      if (studentsData[i].attendanceRecord[currentDay - 1] == true) {
+        present.push(studentsData[i]);
+      } else {
+        absent.push(studentsData[i]);
+      }
+
+    //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
+    res.render("viewAttendance", {
+      layout: "viewAttendanceBody",
+      gbda404Data: studentsData,
+      classname: currentClass,
+      present: present,
+      absent: absent,
+      currentDay: currentDay
+    });
+  });
 });
 
 app.post("/selectClass", urlencodedParser, function(req, res) {
@@ -249,48 +274,42 @@ app.post("/selectClass", urlencodedParser, function(req, res) {
 
   let add = db.collection(currentClass);
 
-  let allStudents = add
-    .get()
-    .then(snapshot => {
-      let studentsData = [];
+  let allStudents = add.get().then(snapshot => {
+    let studentsData = [];
 
-      snapshot.forEach(student => {
-        //creates a array of objects containing all students data
-        studentsData.push(student.data());
+    snapshot.forEach(student => {
+      //creates a array of objects containing all students data
+      studentsData.push(student.data());
 
-        // gbdaClass.doc(student.id).update({ attendanceRecord: [true, false] });
-      });
+      // gbdaClass.doc(student.id).update({ attendanceRecord: [true, false] });
+    });
 
-      let present = [];
-      let absent = [];
+    let present = [];
+    let absent = [];
 
+    for (let i = 0; i < studentsData.length; i++)
+      if (studentsData[i].attendanceRecord[currentDay - 1] == true) {
+        present.push(studentsData[i]);
+      } else {
+        absent.push(studentsData[i]);
+      }
 
-      for (let i = 0; i < studentsData.length; i++)
-        if (studentsData[i].attendanceRecord[currentDay - 1] == true) {
-          present.push(studentsData[i]);
-        } else {
-          absent.push(studentsData[i]);
-        }
+    // if(dummydata.attendanceRecord["insertdayhewre"] == true){
+    //   present.push();
+    // } else{
+    //   students
+    // }
 
-      // if(dummydata.attendanceRecord["insertdayhewre"] == true){
-      //   present.push();
-      // } else{
-      //   students
-      // }
-
-      //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
-      res.render("viewAttendance", {
-        layout: "viewAttendanceBody",
-        gbda404Data: studentsData,
-        classname: currentClass,
-        present: present,
-        absent: absent,
-        currentDay: currentDay
-      });
-    })
-  
-
-  
+    //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
+    res.render("viewAttendance", {
+      layout: "viewAttendanceBody",
+      gbda404Data: studentsData,
+      classname: currentClass,
+      present: present,
+      absent: absent,
+      currentDay: currentDay
+    });
+  });
 });
 
 app.listen(port, () => console.log(`App listening to port ${port}`));
