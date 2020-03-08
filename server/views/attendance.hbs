@@ -1,3 +1,5 @@
+	<body onload="setDropdown({{currentDay}})">
+
 <div class="wrapper">
 	<nav id="sidebar" class="bg-dark">
 		<ul class="list-unstyled components">
@@ -68,7 +70,7 @@
 			<form id="attendance-form" method="POST" action="/recordAttendance">
 				<div class="form-group col-4">
 					<label for="exampleFormControlSelect1">Day of class</label>
-					    <select class="form-control" name="exampleFormControlSelect1" id="exampleFormControlSelect1">
+					    <select class="form-control" name="exampleFormControlSelect1" id="day-select">
                         <option selected value="1">Class 1 - January 6, 2019</option>
                                 <option value="2">Class 2 - March 13, 2019</option>
                                 <option value="3">Class 3 - March 20, 2019</option>
