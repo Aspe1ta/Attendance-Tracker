@@ -238,17 +238,32 @@ app.get("/viewAttendance.html", (req, res) => {
 
     console.log([true, false, true, false, true].filter(v => v).length);
 
+    let presentTally = 0;
+    let absentTally = 0;
+
     for (let i = 0; i < studentsData.length; i++) {
 
       let storedArr = [];
-      console.log('this is the length', studentsData.length);
+
+      
 
       for (let j = 0; j < currentDay; j++) {
 
         storedArr.push(studentsData[i].attendanceRecord[j]);
+        
         console.log(storedArr);
+        
+
 
       }
+
+      presentTally = storedArr.filter(v => v).length;
+      absentTally = storedArr.length - presentTally;
+      console.log("This is pres tally",presentTally);
+      console.log("This is ab tally",absentTally);
+
+      studentsData[i].present = presentTally;
+      studentsData[i].absent = absentTally;
 
     }
 
