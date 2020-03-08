@@ -176,7 +176,7 @@ app.post("/addStudent", urlencodedParser, function(req, res) {
 
   let data = req.body;
 
-  data.attendanceRecord = [false, false, false, false, false, false, false, false, false, false];
+  data.attendanceRecord = [false, false, false, false, false, false, false, false, false, false, false, false];
 
   // console.log(data)
 
