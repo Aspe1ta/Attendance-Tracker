@@ -65,7 +65,9 @@ app.get("/takeattendanceGBDA_404.html", (req, res) => {
         layout: "attendanceBody",
         gbda404Data: studentsData,
         classNum: "GBDA 404",
-        currentClass: currentClass
+        currentClass: currentClass,
+        currentDay: currentDay
+
       });
     })
     .catch(err => {
@@ -95,7 +97,8 @@ app.get("/takeattendanceGBDA_302.html", (req, res) => {
         layout: "attendanceBody",
         gbda404Data: studentsData,
         classNum: "GBDA 302",
-        currentClass: currentClass
+        currentClass: currentClass,
+        currentDay: currentDay
       });
     })
     .catch(err => {
@@ -232,7 +235,9 @@ app.get("/viewAttendance.html", (req, res) => {
         gbda404Data: studentsData,
         classname: currentClass,
         present: present,
-        absent: absent
+        absent: absent,
+        currentDay: currentDay
+
       });
     })
 });
