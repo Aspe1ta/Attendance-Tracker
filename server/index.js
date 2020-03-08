@@ -322,14 +322,8 @@ app.post("/selectClass", urlencodedParser, function(req, res) {
     // }
 
     //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
-    res.render("viewAttendance", {
-      layout: "viewAttendanceBody",
-      gbda404Data: studentsData,
-      classname: currentClass,
-      present: present,
-      absent: absent,
-      currentDay: currentDay
-    });
+  }).then(test =>{
+    res.redirect('/viewAttendance.html');
   });
 });
 
