@@ -1,8 +1,8 @@
 const express = require("express");
 const admin = require("firebase-admin");
-const serviceAccount = require("./../server/ServiceAccountKey.json");
+const serviceAccount = require("./ServiceAccountKey.json");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
 let urlencodedParser = bodyParser.urlencoded({ extended: true });
 
