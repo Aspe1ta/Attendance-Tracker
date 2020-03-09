@@ -327,4 +327,77 @@ app.post("/selectClass", urlencodedParser, function(req, res) {
   });
 });
 
+
+
+app.get("/totalAttendance.html", (req, res) => {
+  console.log(currentDay);
+
+  let add = db.collection(currentClass);
+
+  let allStudents = add.get().then(snapshot => {
+    let studentsData = [];
+
+    snapshot.forEach(student => {
+      //creates a array of objects containing all students data
+      studentsData.push(student.data());
+
+      // gbdaClass.doc(student.id).update({ attendanceRecord: [true, false] });
+    });
+
+    let present = [];
+    let absent = [];
+
+    console.log([true, false, true, false, true].filter(v => v).length);
+
+    let presentTally = 0;
+    let absentTally = 0;
+
+    for (let i = 0; i < studentsData.length; i++) {
+
+      let storedArr = [];
+
+      
+
+      for (let j = 0; j < currentDay; j++) {
+
+        storedArr.push(studentsData[i].attendanceRecord[j]);
+        
+        console.log(storedArr);
+        
+
+
+      }
+
+      presentTally = storedArr.filter(v => v).length;
+      absentTally = storedArr.length - presentTally;
+      console.log("This is pres tally",presentTally);
+      console.log("This is ab tally",absentTally);
+
+      studentsData[i].present = presentTally;
+      studentsData[i].absent = absentTally;
+
+    }
+
+    console.log("This is stu data: ", studentsData);
+
+    for (let i = 0; i < studentsData.length; i++)
+      if (studentsData[i].attendanceRecord[currentDay - 1] == true) {
+        present.push(studentsData[i]);
+      } else {
+        absent.push(studentsData[i]);
+      }
+
+    //Serves the body of the page aka "main.handlebars" to the container //aka "index.handlebars"
+    res.render("totalAttendance", {
+      layout: "totalAttendanceBody",
+      gbda404Data: studentsData,
+      classname: currentClass,
+      present: present,
+      absent: absent,
+      currentDay: currentDay
+    });
+  });
+});
+
+
 app.listen(port, () => console.log(`App listening to port ${port}`));
