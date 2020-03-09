@@ -44,10 +44,10 @@
                     <h1 class="font-weight-bold">Attendance for Class {{currentDay}}</h1>
                     <h5 class="text-secondary">Select a class date to view which student's were present.</h5>
 
-                    <div class="col-6 px-0">
+                    <div class="col-6 px-0 form-inline">
                         <form id="attendance-form" method="POST" action="/selectClass">
 				
-					    <select class="form-control" name="exampleFormControlSelect1" id="day-select">
+					    <select class="form-control mr-2 " name="exampleFormControlSelect1" id="day-select">
                         <option  value="1">Class 1 - January 6, 2019</option>
                                 <option value="2">Class 2 - March 13, 2019</option>
                                 <option value="3">Class 3 - March 20, 2019</option>
@@ -62,7 +62,7 @@
                                 <option value="12">Class 12 - March 23, 2019</option>
                     </select>
 				
-                            <button type="submit" onclick="formFix()" class="btn btn-warning my-1">View Class Attendance</button>
+                            <button type="submit" onclick="formFix()" class="btn btn-warning my-1 ">View Class Attendance</button>
                         </form>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
             <div class="col-6">
                 <div class="table-responsive">
                     <table class="table table-striped  my-3">
-                        <h2 class="font-weight-bolder">Student's Present</h2>
+                        <h2 class="font-weight-bolder">Students Present</h2>
 
                         <thead>
                             <tr>
@@ -96,7 +96,7 @@
             <div class="col-6">
                 <div class="table-responsive">
                     <table class="table table-striped my-3">
-                        <h2 class="font-weight-bolder">Student's Absent</h2>
+                        <h2 class="font-weight-bolder">Students Absent</h2>
 
                         <thead>
                             <tr>
